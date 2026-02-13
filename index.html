@@ -12,80 +12,133 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: sans-serif;
         }
 
-        /* 전체 장면 */
         .scene {
             text-align: center;
         }
 
-        /* 상자 컨테이너 */
-        .box-container {
-            width: 300px;
+        .box {
             position: relative;
-            perspective: 1000px;
-            cursor: pointer;
+            width: 400px;
         }
 
-        /* 뚜껑 (SVG 이미지) */
-        .lid {
+        .base,
+        .frame {
             width: 100%;
-            transform-origin: top;
-            transition: 1s;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
 
-        /* 상자 바닥 */
-        .base {
-            width: 300px;
-            height: 120px;
-            background: #7b4f2c;
-            border-radius: 0 0 30px 30px;
-        }
-
-        /* 열림 효과 */
-        .open .lid {
-            transform: rotateX(-120deg);
-        }
-
-        /* 초콜릿 영역 */
-        .choco-area {
-            margin-top: 40px;
-            display: none;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .choco-area.show {
+        .chocolates {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
+            gap: 15px;
         }
 
         .choco {
-            width: 70px;
-            height: 70px;
-            background: #4b2e1e;
-            border-radius: 15px;
-            color: transparent;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            transition: 0.6s;
+            position: absolute;
+            transition: 0.6s cubic-bezier(.22, .61, .36, 1);
             cursor: pointer;
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
         }
 
-        .choco.flipped {
-            background: #fff3e0;
-            color: #4b2e1e;
+        .choco1 {
+            width: 120px;
+            top: -80px;
+            left: -188px;
         }
 
-        /* 마지막 문장 */
+        .choco2 {
+            width: 120px;
+            top: -80px;
+            left: -100px;
+        }
+
+        .choco3 {
+            width: 80px;
+            top: -50px;
+            left: 4px;
+        }
+
+        .choco4 {
+            width: 100px;
+            top: -60px;
+            left: 85px;
+        }
+
+        .choco5 {
+            width: 80px;
+            top: 40px;
+            left: -173px;
+        }
+
+        .choco6 {
+            width: 80px;
+            top: 40px;
+            left: -86px;
+        }
+
+        .choco7 {
+            width: 120px;
+            top: 10px;
+            left: -10px;
+        }
+
+        .choco8 {
+            width: 120px;
+            top: 10px;
+            left: 78px;
+        }
+
+        .choco9 {
+            width: 80px;
+            top: 132px;
+            left: -173px;
+        }
+
+        .choco10 {
+            width: 120px;
+            top: 100px;
+            left: -100px;
+        }
+
+        .choco11 {
+            width: 100px;
+            top: 120px;
+            left: -3px;
+        }
+
+        .choco12 {
+            width: 80px;
+            top: 130px;
+            left: 93px;
+        }
+
+        .choco.show {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        .lid {
+            width: 100%;
+            position: relative;
+            transform-origin: top;
+            transition: 1s cubic-bezier(.22, .61, .36, 1);
+            cursor: pointer;
+        }
+
+        .lid.open {
+            transform: translateY(-40px) rotateX(-75deg);
+        }
+
         .final-text {
+            margin-top: 10px;
+            font-size: 40px;
             opacity: 0;
-            font-size: 42px;
-            margin-top: 40px;
             transition: 1.5s;
         }
     </style>
@@ -94,51 +147,75 @@
 <body>
 
     <div class="scene">
+        <div class="box">
 
-        <!-- 상자 -->
-        <div class="box-container" onclick="openBox()" id="box">
-            <img src="Top of Box of Chocolates.svg" class="lid">
-            <div class="base"></div>
+            <!-- 바닥 -->
+            <img src="Empty Box of Chocolates.svg" class="base">
+
+            <!-- 안쪽 프레임 -->
+            <!--img src="Frame 6.svg" class="frame"-->
+
+            <!-- 초콜릿들 -->
+            <div class="chocolates">
+                <img src="Heart Chocolate Square.svg" class="choco choco1" onclick="flip(this)">
+                <img src="Striped Chocolate.svg" class="choco choco2" onclick="flip(this)">
+                <img src="Light Striped Chocolate.svg" class="choco choco3" onclick="flip(this)">
+                <img src="Heart Chocoiate.svg" class="choco choco4" onclick="flip(this)">
+                <img src="Dubai Chewy Cookie.svg" class="choco choco5" onclick="flip(this)">
+                <img src="Dark Striped Chocolate.svg" class="choco choco6" onclick="flip(this)">
+                <img src="Heart Chocolate Square.svg" class="choco choco7" onclick="flip(this)">
+                <img src="Striped Chocolate.svg" class="choco choco8" onclick="flip(this)">
+                <img src="Light Striped Chocolate.svg" class="choco choco9" onclick="flip(this)">
+                <img src="Heart Chocolate Square.svg" class="choco choco10" onclick="flip(this)">
+                <img src="Heart Chocoiate_red.svg" class="choco choco11" onclick="flip(this)">
+                <img src="Dubai Chewy Cookie.svg" class="choco choco12" onclick="flip(this)">
+            </div>
+
+            <!-- 뚜껑 -->
+            <img src="Top of Box of Chocolates.svg" class="lid" onclick="openBox()">
+
         </div>
 
-        <!-- 초콜릿 -->
-        <div class="choco-area" id="chocoArea">
-            <div class="choco" onclick="flip(this)">정</div>
-            <div class="choco" onclick="flip(this)">말</div>
-            <div class="choco" onclick="flip(this)">사</div>
-            <div class="choco" onclick="flip(this)">랑</div>
-            <div class="choco" onclick="flip(this)">해</div>
-        </div>
-
-        <div id="finalText" class="final-text">
-            💖 정말 사랑해 💖
+        <div class="final-text" id="finalText">
+            💖 재현아 우리가 같이 맞이하는 2번째 발렌타인데이야 그때의 나는 이런거를 만들기 보다는 그냥 돈쓰는거에 더 재미가 들렸던거같애
+            이제는 이런것도 만들어서 주구 오똔거같애..?ㅎㅎ 재현아 내가 정말 사랑해 후힛 보고싶다 💖
         </div>
 
     </div>
 
-    <script>
 
+    <script>
         let count = 0;
+        let opened = false;
 
         function openBox() {
-            const box = document.getElementById("box");
-            box.classList.add("open");
+            if (opened) return;
+            opened = true;
+
+            const lid = document.querySelector(".lid");
+            lid.classList.add("open");
 
             setTimeout(() => {
-                document.getElementById("chocoArea").classList.add("show");
-            }, 800);
+                document.querySelectorAll(".choco").forEach((c, i) => {
+                    setTimeout(() => {
+                        c.classList.add("show");
+                    }, 1 * i);
+                });
+            }, 500);
         }
 
         function flip(element) {
-            if (!element.classList.contains("flipped")) {
-                element.classList.add("flipped");
+            element.style.transform = "scale(0.85)";
+            setTimeout(() => {
+                element.style.transform = "scale(1)";
                 count++;
-            }
+            }, 150);
 
             if (count === 5) {
                 document.getElementById("finalText").style.opacity = "1";
             }
         }
+
 
     </script>
 
