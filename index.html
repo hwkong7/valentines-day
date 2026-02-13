@@ -7,6 +7,13 @@
 
     <title>For You 🍫</title>
     <style>
+        @media (max-width: 480px) {
+            .box {
+                transform: scale(0.85);
+                transform-origin: top center;
+            }
+        }
+
         body {
             margin: 0;
             height: 100vh;
@@ -23,10 +30,7 @@
 
         .box {
             position: relative;
-            width: 90vw;
-            /* 화면 기준 */
-            max-width: 400px;
-            /* PC에서는 400px 유지 */
+            width: 400px;
         }
 
         .base,
@@ -231,6 +235,7 @@
 
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </body>
 
 </html>
