@@ -23,7 +23,10 @@
 
         .box {
             position: relative;
-            width: 400px;
+            width: 90vw;
+            /* 화면 기준 */
+            max-width: 400px;
+            /* PC에서는 400px 유지 */
         }
 
         .base,
@@ -213,7 +216,7 @@
                 count++;
             }, 150);
 
-            if (count === 5) {
+            if (count === 6) {
                 document.getElementById("finalText").style.opacity = "1";
             }
         }
